@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CLLV Browser</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+        <link href="css/appmain.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Setting Modal -->
+        <div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="settingModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="settingModalLabel">Settings</h4>
+              </div>
+              <div class="modal-body">
+                  <form class="form-horizontal" role="form">
+                          <label for="forumselect" class="control-label">Select forums to pull threads from (at least 1):</label>
+                          <select id="forumselect" multiple class="form-control">
+                          </select>
+                          <p style="font-style:italic;">Select with CTRL and/or SHIFT on Windows and Command key on Mac!</p>
+                      <div class="checkbox">
+                          <label>
+                              <input id='customAlbumart' type="checkbox"> Disable custom albumart (will load faster)
+                          </label>
+                      </div>
+                      <div class="checkbox">
+                          <label>
+                              <input id='preloadMp3' type="checkbox"> Disable mp3 preloading (will load faster, but you wont be able to seek in the player)
+                          </label>
+                      </div>
+                  </form>
+                  <br>
+                  <p style="font-style:italic;">If you've changed the list of forums you want to use you must press Save & Reload.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button id='set_save_reload' type="button" class="btn btn-success">Save & Reload</button>
+                <button id='set_save' type="button" class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Info modal -->
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="settingModalLabel">Info</h4>
+              </div>
+              <div class="modal-body">
+                  <p>For updates and more info check out the forum thread. If you encounter any errors or bugs please post them in the thread and make sure you post debug logs.</p>
+                  <p>Here's how you get the debug logs - launch the app, then go to Chrome's settings (in the browser, on the right there is a button that opens a menu and from there you can go to Settings). In the Settings click on "Extensions". In the top right check in "Developer Mode", and then on that same page near the app info there will be a label that says "Inspect views". Click on the "index.html" link next to it and a window will pop up. In that window go to the Console tab, copy everything there and send it over to me. You can use pastebin.com if it is a really long wall of text.</p>
+                  <p><a target="_blank" href="http://www.clublandlv.com/showthread.php?t=587410&p=1099477">Click here to go to the app's support topic!</a></p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">CLLV Browser</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a data-toggle="modal" data-target="#settingModal" class="settingbutton" href="#">Settings</a></li>
+                        <li><a data-toggle="modal" data-target="#infoModal" href="#">Info</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div id="aftermenu" class="container-fluid">
+            <div class="page-header">
+                <h1>ClublandLV.com Browser <small>Version <span id='version'></span> by <a target="_blank" href="http://www.clublandlv.com/member.php?u=124433">Son</a></small></h1>
+            </div>
+            <!--<a id='rem'>3</a>-->
+            <div class="row">
+                <div class="col-lg-12">
+                    <table id="playlist" class="table table-condensed table-hover table-striped">
+                        <thead><!-- TABLE HEAD-->
+                            <tr>
+                                <th class="col-md-1">Play</th>
+                                <th class="ncenter col-md-4">Title</th>
+                                <th class="ncenter col-md-1">Posted by</th>
+                                <th class="col-md-1">Rating</th>
+                                <th class="col-md-1">Replies / Views</th>
+                                <th class="col-md-1">Genre</th>
+                                <th class="col-md-2">Last Post</th>
+                                <th class="col-md-1">DL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!--<tr>
+                                <td><span class="glyphicon glyphicon-play"></span></td>
+                                <td class="ncenter" >Baauer - Slip</td>
+                                <td class="ncenter">Son</td>
+                                <td>X X X X X</td>
+                                <td>28 / 1,000</td>
+                                <td>14-14-2014</td>
+                                <td><span class="glyphicon glyphicon-circle-arrow-down"></span></td>
+                            </tr> -->
+                            <tr style="visibility: hidden;" id="t_bottom"><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
+                    </table>
+                    <div style='text-align: center;' ><p><span class='glyphicon glyphicon-info-sign'></span> <span id='loading' style='font-weight: bold;'>Loading</span> <span class='glyphicon glyphicon-info-sign'></span></p></div>
+                </div>
+            </div>
+            <div id="pusher"></div>
+        </div>
+        <div id="footer">
+            <img id='p_albumart' style='width:70px;height:70px;' src="default_albumart.png">
+            <span id='player_trackname'></span>
+            <div id="player">
+                
+            </div>
+        </div>
+        <div id="curtains">
+            <!-- Loading screen -->
+            <div id='curtain_centered'>
+                <img src='launcher_intro.png'>
+                <img src='loader.gif'>
+            </div>
+        </div>
+        
+        <!--Required scripts (jQuery and Bootstrap)-->
+        <script src="js/libs/jquery/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.viewport.js"></script>
+        <script src="js/ui.js"></script>
+        <script src="js/logic.js"></script>
+        
+    </body>
+</html>

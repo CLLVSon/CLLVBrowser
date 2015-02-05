@@ -1,0 +1,15 @@
+{
+  "name": "CLLV Browser",
+  "description": "Improves your CLLV browsing experience",
+  "version": "1.1.4.6",
+  "app": {
+    "background": {
+      "scripts": ["background.js"]
+    }
+  },
+  "icons": { "16": "app-16.png", "128": "app-128.png" },
+  "permissions": [
+    "<all_urls>",
+    "storage"
+  ]
+}

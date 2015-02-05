@@ -1,0 +1,123 @@
+
+/*Fixes the 2nd scrollbar appearing*/
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+body {
+overflow-y: scroll;
+}
+body.modal-open {
+overflow-y: scroll;
+margin: 0;
+}
+.modal {
+overflow: auto;
+}
+}
+html, body {
+  overflow:hidden;
+}
+
+/*modal {
+  overflow-y:hidden;
+}*/
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 70px;
+  font-size: 20px;
+  line-height: 20px;
+  background-color: #222;
+  border-color: #080808;
+  color: #FFF;
+  position: fixed;
+  bottom:0;
+  right:0;
+  left:0;
+}
+
+#footer > * {
+    float: left;
+}
+
+#footer > span {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    height: 20px;
+}
+
+#player {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 35%;
+}
+
+#audio-player {
+     width: 100%;
+}
+
+#pusher {
+    height: 100px;
+}
+
+#aftermenu {
+    margin-top: 30px;
+}
+
+#playlist td.ncenter, #playlist th.ncenter{
+    text-align: left;
+}
+
+#playlist td, #playlist th {
+    text-align: center;
+}
+
+#player_trackname {
+    width:50%;
+    overflow:hidden;
+    margin-right:10px;
+}
+
+#player_trackname a, #player_trackname a:hover {
+    text-decoration: none;
+    color: white;
+}
+
+#curtains {
+    position: fixed;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    background-color: #232323;
+    z-index: 9999;
+}
+
+.glyphicon.glyphicon-refresh {
+    -webkit-animation: refreshrotate linear 2s infinite;
+}
+
+@-webkit-keyframes refreshrotate {
+  0%   { -webkit-transform: rotate(0deg); }
+  //50% { -webkit-transform: rotate(180deg);}
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+table#playlist td{
+    vertical-align:middle;
+}
+
+#forumselect {
+    height:200px;
+}
+
+#curtain_centered {
+    width: 800px;
+    height: 175px;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
